@@ -1,0 +1,59 @@
+<div class="container">
+
+    <h2 class="mb-4">Create Task</h2>
+
+    <div class="card p-4">
+
+        <div class="mb-3">
+
+            <label>Task Title</label>
+
+            <input type="text" class="form-control" ng-model="newTask.title">
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>Assigned To</label>
+
+            <input type="text" class="form-control" ng-model="newTask.assignedTo">
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>Priority</label>
+
+            <select class="form-select" ng-model="newTask.priority">
+
+                <option>High</option>
+                <option selected>Medium</option>
+                <option>Low</option>
+
+            </select>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>Status</label>
+
+            <select class="form-select" ng-model="newTask.status">
+
+                <option>Pending</option>
+                <option>In Progress</option>
+                <option>Completed</option>
+
+            </select>
+
+        </div>
+
+        <button class="btn btn-primary" ng-click="addTask()">
+
+            Add Task
+
+        </button>
+
+    </div>
+
+</div>
