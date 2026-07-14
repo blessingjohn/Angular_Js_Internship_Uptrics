@@ -3,7 +3,8 @@ app.config(function ($routeProvider) {
     $routeProvider
 
         .when("/", {
-            templateUrl: "views/dashboard.html"
+            templateUrl: "views/dashboard.html",
+            controller: "DashboardController"
         })
 
         .when("/tasks", {

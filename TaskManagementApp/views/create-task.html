@@ -5,29 +5,22 @@
     <div class="card p-4">
 
         <div class="mb-3">
-
             <label>Task Title</label>
-
             <input type="text" class="form-control" ng-model="newTask.title">
-
         </div>
 
         <div class="mb-3">
-
             <label>Assigned To</label>
-
             <input type="text" class="form-control" ng-model="newTask.assignedTo">
-
         </div>
 
         <div class="mb-3">
-
             <label>Priority</label>
 
             <select class="form-select" ng-model="newTask.priority">
 
                 <option>High</option>
-                <option selected>Medium</option>
+                <option>Medium</option>
                 <option>Low</option>
 
             </select>
@@ -48,9 +41,17 @@
 
         </div>
 
+        <div class="mb-3">
+
+            <label>Due Date</label>
+
+            <input type="date" class="form-control" ng-model="newTask.dueDate">
+
+        </div>
+
         <button class="btn btn-primary" ng-click="addTask()">
 
-            Add Task
+            {{ editId ? 'Update Task' : 'Add Task' }}
 
         </button>
 

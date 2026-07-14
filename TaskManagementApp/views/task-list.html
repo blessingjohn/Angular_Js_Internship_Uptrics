@@ -1,4 +1,4 @@
-<div class="container" ng-controller="TaskController">
+<div class="container">
 
     <h2 class="mb-4">Task List</h2>
 
@@ -12,24 +12,27 @@
 
     </div>
 
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover align-middle">
 
         <thead class="table-dark">
 
             <tr>
+
                 <th>ID</th>
                 <th>Task</th>
                 <th>Assigned To</th>
                 <th>Priority</th>
                 <th>Status</th>
+                <th>Due Date</th>
                 <th>Action</th>
+
             </tr>
 
         </thead>
 
         <tbody>
 
-            <tr ng-repeat="task in tasks | filter:searchTask">
+            <tr ng-repeat="task in tasks | filter:searchTask track by task.id">
 
                 <td>{{task.id}}</td>
 
@@ -37,18 +40,64 @@
 
                 <td>{{task.assignedTo}}</td>
 
-                <td>{{task.priority}}</td>
+                <td>
 
-                <td>{{task.status}}</td>
+                    <span class="badge bg-danger" ng-if="task.priority=='High'">
+
+                        High
+
+                    </span>
+
+                    <span class="badge bg-warning text-dark" ng-if="task.priority=='Medium'">
+
+                        Medium
+
+                    </span>
+
+                    <span class="badge bg-success" ng-if="task.priority=='Low'">
+
+                        Low
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <span class="badge bg-warning text-dark" ng-if="task.status=='Pending'">
+
+                        Pending
+
+                    </span>
+
+                    <span class="badge bg-primary" ng-if="task.status=='In Progress'">
+
+                        In Progress
+
+                    </span>
+
+                    <span class="badge bg-success" ng-if="task.status=='Completed'">
+
+                        Completed
+
+                    </span>
+
+                </td>
+
+                <td>{{task.dueDate}}</td>
 
                 <td>
 
                     <button class="btn btn-warning btn-sm" ng-click="editTask(task)">
-                        Edit
+
+                        ✏ Edit
+
                     </button>
 
                     <button class="btn btn-danger btn-sm" ng-click="deleteTask(task.id)">
-                        Delete
+
+                        🗑 Delete
+
                     </button>
 
                 </td>

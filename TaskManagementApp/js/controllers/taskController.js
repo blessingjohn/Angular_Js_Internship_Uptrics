@@ -8,65 +8,98 @@ app.controller("TaskController", function ($scope, TaskService) {
         title: "",
         assignedTo: "",
         priority: "Medium",
-        status: "Pending"
+        status: "Pending",
+        dueDate: ""
     };
 
-    // Check if user came from Edit button
+    // Function to convert Date object to YYYY-MM-DD
+    function formatDate(date) {
+
+        if (!date) return "";
+
+        var d = new Date(date);
+
+        var year = d.getFullYear();
+        var month = ("0" + (d.getMonth() + 1)).slice(-2);
+        var day = ("0" + d.getDate()).slice(-2);
+
+        return year + "-" + month + "-" + day;
+    }
+
+    // Check if user is editing a task
     var editTask = TaskService.getEditTask();
 
     if (editTask) {
+
         $scope.newTask = angular.copy(editTask);
+
+        // Convert stored string to Date object for input[type="date"]
+        if ($scope.newTask.dueDate) {
+            $scope.newTask.dueDate = new Date($scope.newTask.dueDate);
+        }
+
         $scope.editId = editTask.id;
     }
 
     // Add or Update Task
     $scope.addTask = function () {
 
+        if (
+            !$scope.newTask.title ||
+            !$scope.newTask.assignedTo ||
+            !$scope.newTask.dueDate
+        ) {
+            alert("Please fill all required fields.");
+            return;
+        }
+
+        // UPDATE TASK
         if ($scope.editId) {
 
-            // Update existing task
-            for (var i = 0; i < $scope.tasks.length; i++) {
+            TaskService.updateTask({
 
-                if ($scope.tasks[i].id === $scope.editId) {
+                id: $scope.editId,
+                title: $scope.newTask.title,
+                assignedTo: $scope.newTask.assignedTo,
+                priority: $scope.newTask.priority,
+                status: $scope.newTask.status,
+                dueDate: formatDate($scope.newTask.dueDate)
 
-                    $scope.tasks[i].title = $scope.newTask.title;
-                    $scope.tasks[i].assignedTo = $scope.newTask.assignedTo;
-                    $scope.tasks[i].priority = $scope.newTask.priority;
-                    $scope.tasks[i].status = $scope.newTask.status;
-
-                    break;
-                }
-
-            }
+            });
 
             TaskService.clearEditTask();
 
             $scope.editId = null;
 
-            alert("Task Updated!");
+            alert("Task Updated Successfully!");
 
-        } else {
+        }
 
-            // Add new task
+        // ADD TASK
+        else {
+
             TaskService.addTask({
 
-                id: $scope.tasks.length + 1,
+                id: Date.now(),
                 title: $scope.newTask.title,
                 assignedTo: $scope.newTask.assignedTo,
                 priority: $scope.newTask.priority,
-                status: $scope.newTask.status
+                status: $scope.newTask.status,
+                dueDate: formatDate($scope.newTask.dueDate)
 
             });
 
-            alert("Task Added!");
+            alert("Task Added Successfully!");
+
         }
 
-        // Clear form
+        // Reset Form
         $scope.newTask = {
             title: "",
             assignedTo: "",
             priority: "Medium",
-            status: "Pending"
+            status: "Pending",
+            dueDate: ""
         };
 
     };
@@ -74,14 +107,9 @@ app.controller("TaskController", function ($scope, TaskService) {
     // Delete Task
     $scope.deleteTask = function (id) {
 
-        for (var i = 0; i < $scope.tasks.length; i++) {
+        if (confirm("Are you sure you want to delete this task?")) {
 
-            if ($scope.tasks[i].id === id) {
-
-                $scope.tasks.splice(i, 1);
-
-                break;
-            }
+            TaskService.deleteTask(id);
 
         }
 
