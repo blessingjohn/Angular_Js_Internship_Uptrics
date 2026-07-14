@@ -2,51 +2,221 @@
 <html lang="en" ng-app="taskApp">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Management App</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TaskMaster | Task Management System</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand" href="#!/">Task Manager</a>
+    <!-- ===================== NAVBAR ===================== -->
 
-            <div class="navbar-nav">
-                <a class="nav-link" href="#!/">Dashboard</a>
-                <a class="nav-link" href="#!/tasks">Tasks</a>
-                <a class="nav-link" href="#!/create">Create Task</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow sticky-top">
+
+        <div class="container">
+
+            <a class="navbar-brand fw-bold" href="#!/">
+
+                <i class="bi bi-kanban-fill me-2"></i>
+
+                TaskMaster
+
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="#!/">
+
+                            <i class="bi bi-speedometer2"></i>
+
+                            Dashboard
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="#!/tasks">
+
+                            <i class="bi bi-list-task"></i>
+
+                            Task List
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="#!/create">
+
+                            <i class="bi bi-plus-circle"></i>
+
+                            Create Task
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
             </div>
+
         </div>
+
     </nav>
 
-    <!-- Routed pages appear here -->
-    <div class="container mt-4">
+    <!-- ===================== MAIN CONTENT ===================== -->
+
+    <main class="container py-4">
+
         <div ng-view></div>
-    </div>
+
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+
+    <footer class="bg-dark text-white mt-5">
+
+        <div class="container py-4">
+
+            <div class="row">
+
+                <!-- Project Info -->
+
+                <div class="col-md-6 mb-3">
+
+                    <h5>
+
+                        <i class="bi bi-kanban-fill me-2"></i>
+
+                        TaskMaster
+
+                    </h5>
+
+                    <p class="mb-2">
+
+                        A responsive Task Management Application built using
+                        <strong>AngularJS</strong>,
+                        <strong>JavaScript</strong>,
+                        and
+                        <strong>Bootstrap 5</strong>.
+
+                    </p>
+
+                    <p class="mb-0">
+
+                        Designed for efficient task creation, tracking, and collaboration.
+
+                    </p>
+
+                </div>
+
+                <!-- Developer Info -->
+
+                <div class="col-md-6 text-md-end">
+
+                    <h5>
+
+                        Developer
+
+                    </h5>
+
+                    <p class="mb-1">
+
+                        <i class="bi bi-person-circle"></i>
+
+                        <strong>Blessing John</strong>
+
+                    </p>
+
+                    <p class="mb-1">
+
+                        <i class="bi bi-mortarboard-fill"></i>
+
+                        AngularJS Internship Project
+
+                    </p>
+
+                    <p class="mb-1">
+
+                        <i class="bi bi-calendar-event"></i>
+
+                        2026
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <hr class="border-secondary">
+
+            <div class="text-center">
+
+                <p class="mb-1">
+
+                    © 2026 <strong>Blessing John</strong>. All Rights Reserved.
+
+                </p>
+
+                <small class="text-light">
+
+                    Developed with ❤️ using AngularJS, JavaScript & Bootstrap 5
+
+                </small>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- ===================== SCRIPTS ===================== -->
 
     <!-- AngularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
 
-    <!-- Angular Route -->
+    <!-- AngularJS Route -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular-route.min.js"></script>
 
-    <!-- App -->
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Angular App -->
     <script src="js/app.js"></script>
 
     <!-- Routes -->
     <script src="js/routes.js"></script>
 
+    <!-- Services -->
     <script src="js/services/taskService.js"></script>
 
+    <!-- Controllers -->
     <script src="js/controllers/dashboardController.js"></script>
     <script src="js/controllers/taskController.js"></script>
 

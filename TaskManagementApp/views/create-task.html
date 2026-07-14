@@ -1,59 +1,201 @@
 <div class="container">
 
-    <h2 class="mb-4">Create Task</h2>
+    <!-- Page Header -->
 
-    <div class="card p-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
 
-        <div class="mb-3">
-            <label>Task Title</label>
-            <input type="text" class="form-control" ng-model="newTask.title">
-        </div>
+        <div>
 
-        <div class="mb-3">
-            <label>Assigned To</label>
-            <input type="text" class="form-control" ng-model="newTask.assignedTo">
-        </div>
+            <h2 class="fw-bold">
 
-        <div class="mb-3">
-            <label>Priority</label>
+                <i class="bi bi-plus-circle-fill text-primary"></i>
 
-            <select class="form-select" ng-model="newTask.priority">
+                {{ editId ? 'Update Task' : 'Create New Task' }}
 
-                <option>High</option>
-                <option>Medium</option>
-                <option>Low</option>
+            </h2>
 
-            </select>
+            <p class="text-muted mb-0">
+
+                Create and assign tasks to your team members.
+
+            </p>
 
         </div>
 
-        <div class="mb-3">
+        <a href="#!/tasks" class="btn btn-outline-secondary">
 
-            <label>Status</label>
+            <i class="bi bi-arrow-left"></i>
 
-            <select class="form-select" ng-model="newTask.status">
+            Back to Tasks
 
-                <option>Pending</option>
-                <option>In Progress</option>
-                <option>Completed</option>
+        </a>
 
-            </select>
+    </div>
+
+    <!-- Form Card -->
+
+    <div class="card shadow-lg border-0">
+
+        <div class="card-header bg-primary text-white">
+
+            <h5 class="mb-0">
+
+                <i class="bi bi-pencil-square"></i>
+
+                Task Information
+
+            </h5>
 
         </div>
 
-        <div class="mb-3">
+        <div class="card-body">
 
-            <label>Due Date</label>
+            <div class="row">
 
-            <input type="date" class="form-control" ng-model="newTask.dueDate">
+                <!-- Task Title -->
+
+                <div class="col-md-6 mb-4">
+
+                    <label class="form-label fw-semibold">
+
+                        <i class="bi bi-card-text"></i>
+
+                        Task Title
+
+                        <span class="text-danger">*</span>
+
+                    </label>
+
+                    <input type="text" class="form-control" placeholder="Enter task title" ng-model="newTask.title">
+
+                </div>
+
+                <!-- Assigned To -->
+
+                <div class="col-md-6 mb-4">
+
+                    <label class="form-label fw-semibold">
+
+                        <i class="bi bi-person-fill"></i>
+
+                        Assigned To
+
+                        <span class="text-danger">*</span>
+
+                    </label>
+
+                    <input type="text" class="form-control" placeholder="Enter employee name"
+                        ng-model="newTask.assignedTo">
+
+                </div>
+
+                <!-- Priority -->
+
+                <div class="col-md-4 mb-4">
+
+                    <label class="form-label fw-semibold">
+
+                        <i class="bi bi-flag-fill"></i>
+
+                        Priority
+
+                    </label>
+
+                    <select class="form-select" ng-model="newTask.priority">
+
+                        <option value="High">🔴 High</option>
+
+                        <option value="Medium">🟡 Medium</option>
+
+                        <option value="Low">🟢 Low</option>
+
+                    </select>
+
+                </div>
+
+                <!-- Status -->
+
+                <div class="col-md-4 mb-4">
+
+                    <label class="form-label fw-semibold">
+
+                        <i class="bi bi-check2-circle"></i>
+
+                        Status
+
+                    </label>
+
+                    <select class="form-select" ng-model="newTask.status">
+
+                        <option value="Pending">
+
+                            Pending
+
+                        </option>
+
+                        <option value="In Progress">
+
+                            In Progress
+
+                        </option>
+
+                        <option value="Completed">
+
+                            Completed
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- Due Date -->
+
+                <div class="col-md-4 mb-4">
+
+                    <label class="form-label fw-semibold">
+
+                        <i class="bi bi-calendar-event"></i>
+
+                        Due Date
+
+                        <span class="text-danger">*</span>
+
+                    </label>
+
+                    <input type="date" class="form-control" ng-model="newTask.dueDate">
+
+                </div>
+
+            </div>
 
         </div>
 
-        <button class="btn btn-primary" ng-click="addTask()">
+        <!-- Footer -->
 
-            {{ editId ? 'Update Task' : 'Add Task' }}
+        <div class="card-footer bg-light">
 
-        </button>
+            <div class="d-flex justify-content-end">
+
+                <a href="#!/tasks" class="btn btn-secondary me-2">
+
+                    <i class="bi bi-x-circle"></i>
+
+                    Cancel
+
+                </a>
+
+                <button class="btn btn-primary" ng-click="addTask()">
+
+                    <i class="bi" ng-class="editId ? 'bi-pencil-square' : 'bi-plus-circle'"></i>
+
+                    {{ editId ? 'Update Task' : 'Create Task' }}
+
+                </button>
+
+            </div>
+
+        </div>
 
     </div>
 

@@ -1,18 +1,73 @@
 app.controller("TaskController", function ($scope, TaskService) {
 
-    // Load all tasks
+    // ============================
+    // Load Tasks
+    // ============================
+
     $scope.tasks = TaskService.getTasks();
 
-    // Default form object
+    // ============================
+    // Search, Filters & Sorting
+    // ============================
+
+    $scope.searchTask = "";
+
+    $scope.statusFilter = "";
+    $scope.priorityFilter = "";
+
+    // Default sorting
+    $scope.sortField = "dueDate";
+
+    // Priority order
+    var priorityOrder = {
+        "High": 1,
+        "Medium": 2,
+        "Low": 3
+    };
+
+    // Custom sorting function
+    $scope.getSortValue = function (task) {
+
+        if ($scope.sortField === "priority") {
+            return priorityOrder[task.priority];
+        }
+
+        return task[$scope.sortField];
+    };
+
+    // Status & Priority Filters
+    $scope.filterTasks = function (task) {
+
+        var statusMatch =
+            !$scope.statusFilter ||
+            task.status === $scope.statusFilter;
+
+        var priorityMatch =
+            !$scope.priorityFilter ||
+            task.priority === $scope.priorityFilter;
+
+        return statusMatch && priorityMatch;
+
+    };
+
+    // ============================
+    // Default Form
+    // ============================
+
     $scope.newTask = {
+
         title: "",
         assignedTo: "",
         priority: "Medium",
         status: "Pending",
         dueDate: ""
+
     };
 
-    // Function to convert Date object to YYYY-MM-DD
+    // ============================
+    // Format Date
+    // ============================
+
     function formatDate(date) {
 
         if (!date) return "";
@@ -24,24 +79,34 @@ app.controller("TaskController", function ($scope, TaskService) {
         var day = ("0" + d.getDate()).slice(-2);
 
         return year + "-" + month + "-" + day;
+
     }
 
-    // Check if user is editing a task
+    // ============================
+    // Edit Mode
+    // ============================
+
     var editTask = TaskService.getEditTask();
 
     if (editTask) {
 
         $scope.newTask = angular.copy(editTask);
 
-        // Convert stored string to Date object for input[type="date"]
         if ($scope.newTask.dueDate) {
-            $scope.newTask.dueDate = new Date($scope.newTask.dueDate);
+
+            $scope.newTask.dueDate =
+                new Date($scope.newTask.dueDate);
+
         }
 
         $scope.editId = editTask.id;
+
     }
 
-    // Add or Update Task
+    // ============================
+    // Add / Update Task
+    // ============================
+
     $scope.addTask = function () {
 
         if (
@@ -49,20 +114,29 @@ app.controller("TaskController", function ($scope, TaskService) {
             !$scope.newTask.assignedTo ||
             !$scope.newTask.dueDate
         ) {
+
             alert("Please fill all required fields.");
+
             return;
+
         }
 
-        // UPDATE TASK
+        // UPDATE
+
         if ($scope.editId) {
 
             TaskService.updateTask({
 
                 id: $scope.editId,
+
                 title: $scope.newTask.title,
+
                 assignedTo: $scope.newTask.assignedTo,
+
                 priority: $scope.newTask.priority,
+
                 status: $scope.newTask.status,
+
                 dueDate: formatDate($scope.newTask.dueDate)
 
             });
@@ -75,16 +149,22 @@ app.controller("TaskController", function ($scope, TaskService) {
 
         }
 
-        // ADD TASK
+        // ADD
+
         else {
 
             TaskService.addTask({
 
                 id: Date.now(),
+
                 title: $scope.newTask.title,
+
                 assignedTo: $scope.newTask.assignedTo,
+
                 priority: $scope.newTask.priority,
+
                 status: $scope.newTask.status,
+
                 dueDate: formatDate($scope.newTask.dueDate)
 
             });
@@ -94,17 +174,27 @@ app.controller("TaskController", function ($scope, TaskService) {
         }
 
         // Reset Form
+
         $scope.newTask = {
+
             title: "",
+
             assignedTo: "",
+
             priority: "Medium",
+
             status: "Pending",
+
             dueDate: ""
+
         };
 
     };
 
+    // ============================
     // Delete Task
+    // ============================
+
     $scope.deleteTask = function (id) {
 
         if (confirm("Are you sure you want to delete this task?")) {
@@ -115,7 +205,10 @@ app.controller("TaskController", function ($scope, TaskService) {
 
     };
 
+    // ============================
     // Edit Task
+    // ============================
+
     $scope.editTask = function (task) {
 
         TaskService.setEditTask(task);

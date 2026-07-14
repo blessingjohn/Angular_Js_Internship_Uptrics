@@ -6,11 +6,18 @@ app.controller("DashboardController", function ($scope, TaskService) {
 
         // Dashboard Statistics
         $scope.totalTasks = tasks.length;
-
         $scope.pendingTasks = 0;
         $scope.inProgressTasks = 0;
         $scope.completedTasks = 0;
         $scope.overdueTasks = 0;
+
+        // Today's Date
+        $scope.today = new Date().toLocaleDateString("en-US", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
 
         var today = new Date();
         today.setHours(0, 0, 0, 0);
@@ -38,14 +45,27 @@ app.controller("DashboardController", function ($scope, TaskService) {
 
         });
 
-        // Show only the latest 5 tasks
+        // Completion Percentage
+        if ($scope.totalTasks > 0) {
+
+            $scope.completionPercentage = Math.round(
+                ($scope.completedTasks / $scope.totalTasks) * 100
+            );
+
+        } else {
+
+            $scope.completionPercentage = 0;
+
+        }
+
+        // Latest 5 Tasks
         $scope.recentTasks = tasks.slice().reverse().slice(0, 5);
 
     }
 
     loadDashboard();
 
-    // Refresh whenever the dashboard page opens
+    // Refresh dashboard whenever this route loads
     $scope.$on("$routeChangeSuccess", function () {
         loadDashboard();
     });
