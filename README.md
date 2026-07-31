@@ -139,50 +139,6 @@ in your preferred web browser.
 
 Use the VS Code Live Server extension for a better development experience.
 
----
-
-## 📸 Screenshots
-
-### Dashboard
-
-
-
-```
-Screenshots/dashboard.png
-```
-
----
-
-### Task List
-
-> 
-
-```
-task-list.png
-```
-
----
-
-### Create Task
-
-> 
-
-```
-create-task.png
-```
-
----
-
-### Mobile View
-
-> 
-
-```
-mobile-view.png
-```
-
----
-
 ## 📖 Application Workflow
 
 1. Open the Dashboard.
