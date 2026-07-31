@@ -2,6 +2,7 @@
 
 A responsive **Task Management Application** developed using **AngularJS**, **JavaScript**, **Bootstrap 5**, and **Local Storage**. The application helps teams efficiently create, assign, track, and manage tasks through an intuitive dashboard and user-friendly interface.
 
+Application Link:- https://blessingjohntaskmanagement.vercel.app/ 
 ---
 
 ## 📌 Project Overview
