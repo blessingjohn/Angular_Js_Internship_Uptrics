@@ -148,7 +148,7 @@ Use the VS Code Live Server extension for a better development experience.
 
 
 ```
-dashboard.png
+Screenshots/dashboard.png
 ```
 
 ---
