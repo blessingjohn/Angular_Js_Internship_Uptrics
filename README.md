@@ -102,7 +102,7 @@ TaskMaster/
 │   ├── task-list.html
 │   └── create-task.html
 │
-├── screenshots/
+├── 
 │
 ├── index.html
 │
@@ -145,40 +145,40 @@ Use the VS Code Live Server extension for a better development experience.
 
 ### Dashboard
 
-> Add screenshot here
+
 
 ```
-screenshots/dashboard.png
+dashboard.png
 ```
 
 ---
 
 ### Task List
 
-> Add screenshot here
+> 
 
 ```
-screenshots/task-list.png
+task-list.png
 ```
 
 ---
 
 ### Create Task
 
-> Add screenshot here
+> 
 
 ```
-screenshots/create-task.png
+create-task.png
 ```
 
 ---
 
 ### Mobile View
 
-> Add screenshot here
+> 
 
 ```
-screenshots/mobile-view.png
+mobile-view.png
 ```
 
 ---
